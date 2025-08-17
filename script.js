@@ -275,8 +275,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const scrollY = window.scrollY;
             const introPosition = intro.offsetTop;
             
-            // N'apparaît que quand on arrive à la section Intro
-            if (scrollY > introPosition - 200) {
+            // N'apparaît que quand on a dépassé la moitié de la section Intro
+            if (scrollY > introPosition + 300) {
                 floatingNav.classList.add('visible');
             } else {
                 floatingNav.classList.remove('visible');
