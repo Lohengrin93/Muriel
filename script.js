@@ -266,6 +266,44 @@ document.addEventListener('DOMContentLoaded', function() {
         updateChildrenPricing();
     }
     
+    // Floating navigation functionality
+    function handleFloatingNav() {
+        const floatingNav = document.getElementById('floating-nav');
+        const header = document.querySelector('header');
+        
+        if (floatingNav && header) {
+            const headerHeight = header.offsetHeight;
+            const scrollY = window.scrollY;
+            
+            if (scrollY > headerHeight - 100) {
+                floatingNav.classList.add('visible');
+            } else {
+                floatingNav.classList.remove('visible');
+            }
+        }
+    }
+    
+    // Add scroll listener for floating nav
+    window.addEventListener('scroll', handleFloatingNav);
+    
+    // Add click handlers for floating nav links
+    const floatingNavLinks = document.querySelectorAll('.floating-nav-menu a');
+    floatingNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId.startsWith('#')) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
