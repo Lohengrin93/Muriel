@@ -508,37 +508,65 @@ footer img:hover {
     }
     
     #Atelier {
-        padding: 2rem 1rem;
+        padding: 4rem 1rem;
+        min-height: 120vh;
+    }
+    
+    #Atelier h2 {
+        margin-bottom: 5rem;
     }
     
     .atelierContent {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 4rem;
     }
     
     .atelierContent article {
-        padding: 2rem 1.5rem;
+        padding: 3rem 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .atelierContent aside {
+        margin-bottom: 2rem;
     }
     
     .atelierContent aside img {
-        height: 300px;
+        height: 350px;
     }
     
     #Tarifs {
-        padding: 2rem 1rem;
+        padding: 4rem 1rem;
+        min-height: 120vh;
+    }
+    
+    #Tarifs h2 {
+        margin-bottom: 5rem;
     }
     
     .tarifliste {
-        padding: 2rem 1.5rem;
+        padding: 3rem 2rem;
         max-width: 95%;
     }
     
+    .tarifliste h4, .tarifliste h5 {
+        margin: 3rem 0 2rem 0;
+    }
+    
+    table {
+        margin: 2rem 0 3rem 0;
+    }
+    
     #Contact {
-        padding: 2rem 1rem;
+        padding: 4rem 1rem;
+        min-height: 100vh;
+    }
+    
+    #Contact h2 {
+        margin-bottom: 4rem;
     }
     
     .contact-content {
-        padding: 2rem 1.5rem;
+        padding: 3rem 2rem;
         max-width: 95%;
     }
     
@@ -600,25 +628,53 @@ footer img:hover {
         margin: 1.5rem auto;
     }
     
-    .atelierContent aside {
-        height: 200px;
+    #Atelier {
+        padding: 3rem 1rem;
+        min-height: 140vh;
     }
     
-    .wordsImg img {
-        max-width: 95%;
+    .atelierContent {
+        gap: 3rem;
+    }
+    
+    .atelierContent article {
+        padding: 2.5rem 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .atelierContent aside img {
+        height: 280px;
+    }
+    
+    #Tarifs {
+        padding: 3rem 1rem;
+        min-height: 140vh;
     }
     
     .tarifliste {
-        margin: -3rem auto 2rem auto;
-        padding: 15px;
+        padding: 2.5rem 1.5rem;
+        margin: 0;
+    }
+    
+    .tarifliste h4, .tarifliste h5 {
+        margin: 2.5rem 0 1.5rem 0;
     }
     
     table {
         font-size: 0.9rem;
+        margin: 1.5rem 0 2.5rem 0;
     }
     
     th, td {
-        padding: 8px;
+        padding: 12px;
+    }
+    
+    #Contact {
+        padding: 3rem 1rem;
+    }
+    
+    .contact-content {
+        padding: 2.5rem 1.5rem;
     }
 }
 
