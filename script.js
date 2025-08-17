@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateChildrenPricing();
     }
     
-    // Floating navigation functionality
+    // Floating navigation functionality with color adaptation
     function handleFloatingNav() {
         const floatingNav = document.getElementById('floating-nav');
         const intro = document.getElementById('Intro');
@@ -275,17 +275,100 @@ document.addEventListener('DOMContentLoaded', function() {
             const scrollY = window.scrollY;
             const introPosition = intro.offsetTop;
             
-            // N'apparaît que quand on a dépassé la moitié de la section Intro
-            if (scrollY > introPosition + 300) {
+            // Apparaît dès qu'on arrive dans la section "Le langage de l'Art" (Intro)
+            if (scrollY >= introPosition - 100) {
                 floatingNav.classList.add('visible');
+                
+                // Adapter les couleurs selon la section visible
+                adaptNavColors(floatingNav, scrollY);
             } else {
                 floatingNav.classList.remove('visible');
             }
         }
     }
     
-    // Add scroll listener for floating nav
-    window.addEventListener('scroll', handleFloatingNav);
+    // Fonction pour adapter les couleurs de la navigation selon la section
+    function adaptNavColors(nav, scrollY) {
+        const sections = [
+            { id: 'Intro', colors: 'intro-colors' },
+            { id: 'Atelier', colors: 'atelier-colors' },
+            { id: 'Words', colors: 'words-colors' },
+            { id: 'Tarifs', colors: 'tarifs-colors' },
+            { id: 'Contact', colors: 'contact-colors' }
+        ];
+        
+        let currentSection = 'intro-colors'; // Couleur par défaut
+        
+        sections.forEach(section => {
+            const element = document.getElementById(section.id);
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.top + window.scrollY;
+                const elementBottom = elementTop + element.offsetHeight;
+                
+                // Si on est dans cette section (avec une marge)
+                if (scrollY >= elementTop - 200 && scrollY < elementBottom - 200) {
+                    currentSection = section.colors;
+                }
+            }
+        });
+        
+        // Retirer toutes les classes de couleur existantes
+        nav.classList.remove('intro-colors', 'atelier-colors', 'words-colors', 'tarifs-colors', 'contact-colors');
+        
+        // Ajouter la nouvelle classe de couleur
+        nav.classList.add(currentSection);
+    }
+    
+    // Add scroll listener for floating nav and smooth transitions
+    window.addEventListener('scroll', function() {
+        handleFloatingNav();
+        handleSmoothTransitions();
+    });
+    
+    // Fonction pour gérer les transitions fluides entre sections
+    function handleSmoothTransitions() {
+        const header = document.querySelector('header');
+        const headerVideo = document.querySelector('.header-video');
+        const intro = document.getElementById('Intro');
+        
+        if (header && headerVideo && intro) {
+            const scrollY = window.scrollY;
+            const headerHeight = header.offsetHeight;
+            const introPosition = intro.offsetTop;
+            
+            // Calculer le pourcentage de scroll depuis le header vers l'intro
+            const scrollProgress = Math.min(scrollY / (introPosition * 0.8), 1);
+            
+            // Effet parallaxe sur la vidéo
+            if (scrollProgress > 0) {
+                const videoTransform = scrollProgress * 20; // Déplacement subtil
+                const videoOpacity = Math.max(1 - scrollProgress * 1.2, 0);
+                
+                headerVideo.style.transform = `translate(-50%, calc(-50% + ${videoTransform}px)) scale(${1 + scrollProgress * 0.1})`;
+                headerVideo.style.opacity = videoOpacity;
+            }
+            
+            // Effet sur l'overlay de transition du header
+            const headerOverlay = header.querySelector('::after');
+            if (scrollProgress > 0.3) {
+                header.style.setProperty('--overlay-opacity', Math.min(scrollProgress * 1.5, 1));
+            }
+        }
+    }
+    
+    
+    // Accélérer la vidéo intro
+    const introVideo = document.getElementById('intro-video');
+    if (introVideo) {
+        introVideo.playbackRate = 1.5; // Accélère la vidéo de 1.5x
+        
+        // S'assurer que la vidéo tourne en boucle
+        introVideo.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        });
+    }
     
     // Add click handlers for floating nav links
     const floatingNavLinks = document.querySelectorAll('.floating-nav-menu a');

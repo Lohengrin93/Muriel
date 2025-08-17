@@ -104,6 +104,32 @@ header {
     position: relative;
     padding: 2rem;
     overflow: hidden;
+    transition: all 1.5s ease-in-out;
+    --overlay-opacity: 0;
+}
+
+/* Overlay de transition entre header et intro */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.05) 20%,
+        rgba(255, 255, 255, 0.15) 40%,
+        rgba(255, 255, 255, 0.35) 60%,
+        rgba(255, 255, 255, 0.65) 80%,
+        rgba(255, 255, 255, 0.85) 90%,
+        rgba(255, 255, 255, 0.95) 95%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+    opacity: var(--overlay-opacity, 0);
+    transition: opacity 1.5s ease-in-out;
 }
 
 
@@ -118,6 +144,7 @@ header {
     transform: translate(-50%, -50%);
     z-index: 0;
     object-fit: cover;
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
 
 .titleHeader {
@@ -213,63 +240,193 @@ main {
 #Intro {
     width: 100%;
     min-height: 100vh;
-    background-image: url('./backgr_img/6.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     padding: 4rem 2rem;
+    transition: all 2s ease-in-out;
+    overflow: hidden;
+}
+
+/* Vidéo de fond pour la section Intro */
+.intro-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    object-fit: contain;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Overlay de transition au début de la section Intro */
+#Intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.8) 20%,
+        rgba(255, 255, 255, 0.4) 60%,
+        rgba(255, 255, 255, 0.1) 90%,
+        transparent 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 2s ease-in-out;
+}
+
+/* Overlay de transition à la fin de la section Intro */
+#Intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    background: linear-gradient(to bottom, 
+        transparent 0%,
+        rgba(0, 0, 0, 0.03) 20%,
+        rgba(0, 0, 0, 0.08) 40%,
+        rgba(0, 0, 0, 0.15) 60%,
+        rgba(0, 0, 0, 0.25) 80%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 2s ease-in-out;
 }
 
 .intro-content {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 30px;
-    padding: 4rem 3rem;
-    text-align: center;
-    max-width: 800px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.25) 25%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 40px;
+    padding: 5rem 4rem;
+    text-align: left;
+    max-width: 1000px;
+    box-shadow: 
+        0 25px 80px rgba(0,0,0,0.15),
+        0 10px 40px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2);
     animation: fadeInUp 1s ease-out 0.5s both;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effet de brillance subtile */
+.intro-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent
+    );
+    animation: shimmer 3s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 .intro-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 300;
-    color: #2c2c2c;
-    margin: 0 0 2rem 0;
-    letter-spacing: 2px;
-    line-height: 1.2;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 200;
+    color: #1a1a1a;
+    margin: 0 0 3rem 0;
+    letter-spacing: 3px;
+    line-height: 1.1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .intro-line {
-    width: 80px;
-    height: 3px;
-    background-color: #ff6b9d;
-    margin: 2rem auto;
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b9d, #ff8a65, #ff6b9d);
+    margin: 3rem auto 4rem auto;
     border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+}
+
+.intro-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: #ff6b9d;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
 }
 
 .intro-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 2.2vw, 1.2rem);
-    font-weight: 400;
-    color: #666;
-    margin: 1.5rem 0;
-    letter-spacing: 0.5px;
-    line-height: 1.7;
-    text-align: left;
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    font-weight: 300;
+    color: #2c2c2c;
+    margin: 2.5rem 0;
+    letter-spacing: 0.8px;
+    line-height: 1.8;
+    text-align: justify;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
+.intro-text:first-of-type {
+    font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+    font-weight: 400;
+    color: #1a1a1a;
+}
+
+.intro-text:first-of-type::first-letter {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #ff6b9d;
+    float: left;
+    line-height: 3rem;
+    margin: 0.5rem 0.8rem 0 0;
+    text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+}
+
+
 #Atelier {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     background-image: url('./backgr_img/11.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
@@ -277,6 +434,47 @@ main {
     align-items: center;
     padding: 4rem 2rem;
     position: relative;
+    margin-top: -10vh;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Image de fond supplémentaire pour forcer la couverture complète */
+#Atelier::after {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-image: url('./backgr_img/11.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+/* Overlay de transition au début de la section Atelier */
+#Atelier::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 30vh;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.25) 20%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0.08) 60%,
+        rgba(0, 0, 0, 0.03) 80%,
+        transparent 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 2s ease-in-out;
 }
 
 #Atelier h2 {
@@ -286,6 +484,19 @@ main {
     border-radius: 50px;
     margin-bottom: 4rem;
     box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInTitle 1s ease-out 0.5s forwards;
+}
+
+/* Animation pour le titre */
+@keyframes slideInTitle {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .atelierContent {
@@ -294,6 +505,19 @@ main {
     gap: 4rem;
     max-width: 1200px;
     width: 100%;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideInContent 1.2s ease-out 1.2s forwards;
+}
+
+/* Animation pour le contenu principal */
+@keyframes slideInContent {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .atelierContent article {
@@ -304,12 +528,125 @@ main {
     box-shadow: 0 20px 60px rgba(0,0,0,0.1);
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     line-height: 1.7;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: slideInWindow 1s ease-out 1.8s forwards;
+}
+
+/* Animation pour la fenêtre blanche */
+@keyframes slideInWindow {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animations modernes pour le texte */
+.atelierContent article h3 {
+    opacity: 0;
+    transform: translateY(20px) rotateX(15deg);
+    filter: blur(5px);
+    animation: modernTextIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2.5s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.atelierContent article p:first-of-type {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(3px);
+    animation: modernTextIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 3.2s forwards;
+}
+
+.atelierContent article p:last-of-type {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(3px);
+    animation: modernTextIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 3.9s forwards;
+}
+
+/* Animation moderne pour l'apparition du texte */
+@keyframes modernTextIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95) rotateX(15deg);
+        filter: blur(5px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(15px) scale(0.98) rotateX(8deg);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0px);
+    }
+}
+
+/* Animation avec effet de brillance */
+.atelierContent article h3::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: textShine 2s ease-in-out 4s;
+}
+
+@keyframes textShine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Animation de révélation progressive des mots */
+.atelierContent article p {
+    overflow: hidden;
+    position: relative;
+}
+
+.atelierContent article p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, white 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: revealText 1.5s ease-in-out;
+}
+
+.atelierContent article p:first-of-type::before {
+    animation-delay: 3.2s;
+}
+
+.atelierContent article p:last-of-type::before {
+    animation-delay: 3.9s;
+}
+
+@keyframes revealText {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .atelierContent aside {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: slideInImage 1s ease-out 2.8s forwards;
 }
 
 .atelierContent aside img {
@@ -319,6 +656,14 @@ main {
     border-radius: 30px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
+}
+
+/* Animation pour l'image */
+@keyframes slideInImage {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .atelierContent aside img:hover {
@@ -414,68 +759,244 @@ main {
 /* Floating Navigation */
 .floating-nav {
     position: fixed;
-    top: -60px;
-    right: 20px;
-    width: auto;
-    background: linear-gradient(135deg, 
-        rgba(255, 182, 193, 0.85) 0%, 
-        rgba(221, 160, 221, 0.8) 35%, 
-        rgba(173, 216, 230, 0.75) 70%, 
-        rgba(255, 240, 245, 0.7) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 25px;
-    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.3);
+    top: 0;
+    right: 10px;
+    transform: none;
+    width: 80px;
+    height: 100vh;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255, 182, 193, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 153, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(255, 192, 203, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 102, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 204, 204, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(255, 182, 193, 0.02), rgba(255, 255, 153, 0.02));
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.05);
     z-index: 999;
-    transition: top 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .floating-nav.visible {
-    top: 80px;
+    opacity: 0.3;
+    visibility: visible;
+}
+
+.floating-nav:hover {
+    opacity: 0.95;
+    width: 160px;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255, 182, 193, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 153, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(255, 192, 203, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 102, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 204, 204, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(255, 182, 193, 0.12), rgba(255, 255, 153, 0.12));
+    backdrop-filter: blur(10px);
+    transform: translateX(-10px) scale(1.02);
+    box-shadow: 0 0 30px rgba(255, 182, 193, 0.2);
 }
 
 .floating-nav-content {
     display: flex;
     align-items: center;
-    padding: 0.6rem 1.5rem;
-    gap: 1.5rem;
+    padding: 3rem 1rem;
+    gap: 0;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
 }
 
 .nav-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #2c2c2c;
-    text-decoration: none;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+    display: none;
 }
 
 .floating-nav-menu {
     display: flex;
+    flex-direction: column;
     list-style: none;
-    gap: 1.5rem;
+    gap: 4rem;
     margin: 0;
     padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .floating-nav-menu li a {
     text-decoration: none;
     color: #2c2c2c;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 1.2rem 1rem;
+    border-radius: 18px;
+    transition: all 0.4s ease;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    white-space: nowrap;
+    text-align: center;
+    transform: scale(0.9);
+}
+
+.floating-nav:hover .floating-nav-menu li a {
+    opacity: 1;
+    transform: scale(1);
+    font-size: 1rem;
 }
 
 .floating-nav-menu li a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #ff6b9d;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(255, 182, 193, 0.2);
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #e91e63;
+    transform: scale(1.08);
+    box-shadow: 0 5px 20px rgba(255, 182, 193, 0.4);
     text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+    opacity: 1;
+}
+
+/* Couleurs adaptatives selon les sections */
+
+/* Section Intro - Rose et jaune (couleurs par défaut) */
+.floating-nav.intro-colors {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255, 182, 193, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 153, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(255, 192, 203, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 102, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 204, 204, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(255, 182, 193, 0.02), rgba(255, 255, 153, 0.02));
+}
+
+.floating-nav.intro-colors:hover {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255, 182, 193, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 153, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(255, 192, 203, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 102, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 204, 204, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(255, 182, 193, 0.12), rgba(255, 255, 153, 0.12));
+    box-shadow: 0 0 30px rgba(255, 182, 193, 0.2);
+}
+
+/* Section Atelier - Verts et bleus naturels */
+.floating-nav.atelier-colors {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(144, 238, 144, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(173, 216, 230, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(152, 251, 152, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(135, 206, 235, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(176, 224, 230, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(144, 238, 144, 0.02), rgba(173, 216, 230, 0.02));
+}
+
+.floating-nav.atelier-colors:hover {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(144, 238, 144, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(173, 216, 230, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(152, 251, 152, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(135, 206, 235, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(176, 224, 230, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(144, 238, 144, 0.12), rgba(173, 216, 230, 0.12));
+    box-shadow: 0 0 30px rgba(144, 238, 144, 0.2);
+}
+
+.floating-nav.atelier-colors .floating-nav-menu li a:hover {
+    color: #4CAF50;
+    box-shadow: 0 5px 20px rgba(144, 238, 144, 0.4);
+}
+
+/* Section Words - Violets et lavandes */
+.floating-nav.words-colors {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(221, 160, 221, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(230, 230, 250, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(216, 191, 216, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(219, 112, 147, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(238, 130, 238, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(221, 160, 221, 0.02), rgba(230, 230, 250, 0.02));
+}
+
+.floating-nav.words-colors:hover {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(221, 160, 221, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(230, 230, 250, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(216, 191, 216, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(219, 112, 147, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(238, 130, 238, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(221, 160, 221, 0.12), rgba(230, 230, 250, 0.12));
+    box-shadow: 0 0 30px rgba(221, 160, 221, 0.2);
+}
+
+.floating-nav.words-colors .floating-nav-menu li a:hover {
+    color: #9C27B0;
+    box-shadow: 0 5px 20px rgba(221, 160, 221, 0.4);
+}
+
+/* Section Tarifs - Oranges et corails */
+.floating-nav.tarifs-colors {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255, 218, 185, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255, 160, 122, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(255, 228, 196, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(255, 165, 0, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 204, 153, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(255, 218, 185, 0.02), rgba(255, 160, 122, 0.02));
+}
+
+.floating-nav.tarifs-colors:hover {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255, 218, 185, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255, 160, 122, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(255, 228, 196, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(255, 165, 0, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 204, 153, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(255, 218, 185, 0.12), rgba(255, 160, 122, 0.12));
+    box-shadow: 0 0 30px rgba(255, 160, 122, 0.2);
+}
+
+.floating-nav.tarifs-colors .floating-nav-menu li a:hover {
+    color: #FF9800;
+    box-shadow: 0 5px 20px rgba(255, 160, 122, 0.4);
+}
+
+/* Section Contact - Bleus et turquoises */
+.floating-nav.contact-colors {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(175, 238, 238, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(176, 196, 222, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(173, 216, 230, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(135, 206, 250, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(224, 255, 255, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(175, 238, 238, 0.02), rgba(176, 196, 222, 0.02));
+}
+
+.floating-nav.contact-colors:hover {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(175, 238, 238, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(176, 196, 222, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(173, 216, 230, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(135, 206, 250, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(224, 255, 255, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(175, 238, 238, 0.12), rgba(176, 196, 222, 0.12));
+    box-shadow: 0 0 30px rgba(175, 238, 238, 0.2);
+}
+
+.floating-nav.contact-colors .floating-nav-menu li a:hover {
+    color: #2196F3;
+    box-shadow: 0 5px 20px rgba(175, 238, 238, 0.4);
 }
 
 .tarifliste {
@@ -771,13 +1292,38 @@ footer img:hover {
         min-height: 80vh;
     }
     
+    .intro-video {
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
+    
     .intro-content {
-        padding: 2rem 1.5rem;
+        padding: 3rem 2rem;
         max-width: 95%;
+        border-radius: 30px;
     }
     
     .intro-title {
-        font-size: clamp(2rem, 8vw, 3rem);
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+        margin-bottom: 2rem;
+    }
+    
+    .intro-line {
+        width: 100px;
+        margin: 2rem auto 3rem auto;
+    }
+    
+    .intro-text {
+        margin: 2rem 0;
+        text-align: left;
+    }
+    
+    .intro-text:first-of-type::first-letter {
+        font-size: 3rem;
+        line-height: 2.5rem;
+        margin: 0.3rem 0.6rem 0 0;
     }
     
     #Atelier {
@@ -905,12 +1451,39 @@ footer img:hover {
         min-height: 50vh;
     }
     
+    .intro-video {
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
+    
     .intro-content {
         max-width: 95%;
+        padding: 2.5rem 1.5rem;
+        border-radius: 25px;
     }
     
     .intro-title {
         font-size: clamp(2rem, 10vw, 3rem);
+        margin-bottom: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .intro-line {
+        width: 80px;
+        margin: 1.5rem auto 2.5rem auto;
+    }
+    
+    .intro-text {
+        margin: 1.8rem 0;
+        line-height: 1.7;
+    }
+    
+    .intro-text:first-of-type::first-letter {
+        font-size: 2.5rem;
+        line-height: 2rem;
+        margin: 0.2rem 0.5rem 0 0;
     }
     
     .intro-line {
@@ -1079,32 +1652,60 @@ footer img:hover {
     
     /* Floating Nav Mobile */
     .floating-nav {
-        right: 15px;
+        right: 5px;
+        width: 60px;
+        top: 0;
+        height: 100vh;
+        transform: none;
     }
     
     .floating-nav.visible {
-        top: 70px;
+        opacity: 0.4;
+        visibility: visible;
+    }
+    
+    .floating-nav:hover {
+        width: 120px;
+        opacity: 0.9;
+        transform: translateX(-8px) scale(1.01);
     }
     
     .floating-nav-content {
-        padding: 0.5rem 1rem;
+        padding: 2rem 0.5rem;
         flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .nav-brand {
-        font-size: 0.9rem;
-    }
-    
-    .floating-nav-menu {
-        gap: 0.6rem;
-        flex-wrap: wrap;
+        gap: 0;
+        height: 100%;
         justify-content: center;
     }
     
+    .nav-brand {
+        display: none;
+    }
+    
+    .floating-nav-menu {
+        gap: 3rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    
     .floating-nav-menu li a {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
+        font-size: 0.6rem;
+        padding: 1rem 0.6rem;
+        writing-mode: horizontal-tb;
+        text-orientation: initial;
+        white-space: nowrap;
+        text-align: center;
+        opacity: 0.7;
+        transform: scale(0.85);
+        letter-spacing: 0.8px;
+    }
+    
+    .floating-nav:hover .floating-nav-menu li a {
+        opacity: 1;
+        transform: scale(1);
+        font-size: 0.8rem;
     }
 }
 
