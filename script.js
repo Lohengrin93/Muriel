@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
         const cartSummary = document.getElementById('cart-summary');
+        const cartToggleContainer = document.querySelector('.cart-toggle-container');
         
         if (cart.length === 0) {
             cartItems.innerHTML = '<p class="empty-cart">Votre panier est vide</p>';
@@ -26,6 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
             cartCount.textContent = '0';
             if (cartCountHeader) cartCountHeader.textContent = '0';
             if (cartSummary) cartSummary.value = '';
+            
+            // Hide cart button when empty
+            if (cartToggleContainer) {
+                cartToggleContainer.style.display = 'none';
+            }
+            
+            // Auto-hide cart if it's open and empty
+            hideCart();
         } else {
             cartItems.innerHTML = cart.map((item, index) => `
                 <div class="cart-item">
@@ -44,6 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (cartSummary) {
                 const summary = cart.map(item => `${item.service} (${item.duration}) - ${item.price}€`).join('\\n');
                 cartSummary.value = summary + '\\n\\nTotal: ' + total + '€';
+            }
+            
+            // Show cart button when items are added
+            if (cartToggleContainer) {
+                cartToggleContainer.style.display = 'block';
             }
         }
     }
