@@ -583,6 +583,44 @@ th {
     border-left: 3px solid #ffc107;
 }
 
+/* Children's Workshop Booking */
+.children-booking {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.children-booking label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #2c2c2c;
+    font-size: 0.9rem;
+}
+
+.children-select {
+    padding: 0.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.3s ease;
+}
+
+.children-select:focus {
+    outline: none;
+    border-color: #ff6b9d;
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.price-note {
+    display: block;
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+    font-style: italic;
+}
+
 footer {
     background-color: rgba(44, 44, 44, 0.95);
     backdrop-filter: blur(10px);

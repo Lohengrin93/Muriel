@@ -240,6 +240,32 @@ document.addEventListener('DOMContentLoaded', function() {
         payNowBtn.addEventListener('click', processPayment);
     }
     
+    // Children's workshop dynamic pricing
+    function updateChildrenPricing() {
+        const childrenCount = document.getElementById('children-count');
+        const childrenPrice = document.getElementById('children-price');
+        const childrenBookBtn = document.getElementById('children-book-btn');
+        
+        if (childrenCount && childrenPrice && childrenBookBtn) {
+            const count = parseInt(childrenCount.value);
+            const totalPrice = count * 35;
+            
+            childrenPrice.textContent = totalPrice + '€';
+            
+            // Update button data attributes
+            childrenBookBtn.setAttribute('data-service', `Atelier enfants (${count} enfant${count > 1 ? 's' : ''})`);
+            childrenBookBtn.setAttribute('data-price', totalPrice.toString());
+        }
+    }
+    
+    // Children count change listener
+    const childrenCountSelect = document.getElementById('children-count');
+    if (childrenCountSelect) {
+        childrenCountSelect.addEventListener('change', updateChildrenPricing);
+        // Initialize with default value
+        updateChildrenPricing();
+    }
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'

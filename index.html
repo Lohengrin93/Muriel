@@ -210,10 +210,23 @@
                             <th>Réservation</th>
                         </tr>
                         <tr>
-                            <td>Groupe enfants (max 4)</td>
+                            <td>
+                                <div class="children-booking">
+                                    <label for="children-count">Nombre d'enfants:</label>
+                                    <select id="children-count" class="children-select">
+                                        <option value="1">1 enfant</option>
+                                        <option value="2">2 enfants</option>
+                                        <option value="3">3 enfants</option>
+                                        <option value="4">4 enfants</option>
+                                    </select>
+                                </div>
+                            </td>
                             <td>2 heures</td>
-                            <td>35€/enfant</td>
-                            <td><button class="book-btn" data-service="Atelier enfants" data-duration="2h" data-price="35">Réserver</button></td>
+                            <td>
+                                <span id="children-price">35€</span>
+                                <small class="price-note">(35€/enfant)</small>
+                            </td>
+                            <td><button class="book-btn" id="children-book-btn" data-service="Atelier enfants" data-duration="2h" data-price="35">Réserver</button></td>
                         </tr>
                     </table>
                     
