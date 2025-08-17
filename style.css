@@ -205,44 +205,56 @@ main {
 #Intro::before {
     content: '';
     position: absolute;
-    top: -40%;
-    left: -60%;
-    width: 120%;
-    height: 180%;
-    background: radial-gradient(ellipse 60% 80% at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 40%, transparent 60%);
+    top: -20%;
+    left: -20%;
+    width: 40%;
+    height: 140%;
+    background: radial-gradient(ellipse 100% 60% at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 60%, transparent 80%);
     border-radius: 50%;
-    animation: waveLeft 10s ease-in-out infinite;
+    animation: waveLeft 4s ease-in-out infinite;
     z-index: 1;
 }
 
 #Intro::after {
     content: '';
     position: absolute;
-    top: -40%;
-    right: -60%;
-    width: 120%;
-    height: 180%;
-    background: radial-gradient(ellipse 60% 80% at center, rgba(255, 192, 203, 0.7) 0%, rgba(255, 182, 193, 0.4) 40%, transparent 60%);
+    top: -20%;
+    right: -20%;
+    width: 40%;
+    height: 140%;
+    background: radial-gradient(ellipse 100% 60% at center, rgba(255, 182, 193, 0.9) 0%, rgba(255, 182, 193, 0.6) 30%, rgba(255, 182, 193, 0.3) 60%, transparent 80%);
     border-radius: 50%;
-    animation: waveRight 10s ease-in-out infinite reverse;
+    animation: waveRight 4s ease-in-out infinite;
     z-index: 1;
 }
 
 @keyframes waveLeft {
     0%, 100% { 
-        transform: translateY(0) translateX(0) scale(1) rotate(0deg); 
+        transform: translateY(0px) translateX(0px) scale(1); 
+    }
+    25% { 
+        transform: translateY(-30px) translateX(20px) scale(1.1); 
     }
     50% { 
-        transform: translateY(-20px) translateX(15px) scale(1.05) rotate(2deg); 
+        transform: translateY(-10px) translateX(40px) scale(1.2); 
+    }
+    75% { 
+        transform: translateY(20px) translateX(20px) scale(1.1); 
     }
 }
 
 @keyframes waveRight {
     0%, 100% { 
-        transform: translateY(0) translateX(0) scale(1) rotate(0deg); 
+        transform: translateY(0px) translateX(0px) scale(1); 
+    }
+    25% { 
+        transform: translateY(30px) translateX(-20px) scale(1.1); 
     }
     50% { 
-        transform: translateY(20px) translateX(-15px) scale(1.05) rotate(-2deg); 
+        transform: translateY(10px) translateX(-40px) scale(1.2); 
+    }
+    75% { 
+        transform: translateY(-20px) translateX(-20px) scale(1.1); 
     }
 }
 
