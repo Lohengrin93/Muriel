@@ -189,10 +189,9 @@ main {
 }
 
 #Intro {
-    min-height: 60vh;
     margin-top: 2rem;
     background-image: url('./img1.jpg');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 1rem;
@@ -200,12 +199,13 @@ main {
     align-items: center;
     justify-content: center;
     position: relative;
+    min-height: 80vh;
     animation: fadeInUp 1s ease-out;
 }
 
 .intro-content {
-    background-color: rgba(255, 182, 193, 0.85);
-    color: darkblue;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: black;
     font-size: clamp(1rem, 2.5vw, 1.4rem);
     padding: clamp(2rem, 5vw, 4rem);
     border-radius: 1rem;
@@ -403,7 +403,7 @@ footer img:hover {
     }
     
     #Intro {
-        min-height: 50vh;
+        min-height: 60vh;
     }
     
     .intro-content {
@@ -486,7 +486,7 @@ footer img:hover {
     }
     
     #Intro {
-        min-height: 40vh;
+        min-height: 50vh;
     }
     
     .intro-content {
