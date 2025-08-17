@@ -191,40 +191,28 @@ main {
 #Intro {
     min-height: 60vh;
     margin-top: 2rem;
+    background-image: url('./img1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 1rem;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: fadeInUp 1s ease-out;
+}
+
+.intro-content {
+    background-color: rgba(255, 182, 193, 0.85);
     color: darkblue;
     font-size: clamp(1rem, 2.5vw, 1.4rem);
+    padding: clamp(2rem, 5vw, 4rem);
     border-radius: 1rem;
-    padding: 2rem 0;
-    gap: 2rem;
-}
-
-#Intro aside {
-    flex: 1;
-    display: flex; 
-    align-items: stretch;
-    animation: slideInFromLeft 1s ease-out;
-}
-
-#Intro aside img {
-    height: 100%;
-    width: 100%; 
-    object-fit: cover;
-    border-radius: 1rem;
-    transition: transform 0.3s ease;
-}
-
-#Intro aside img:hover {
-    transform: scale(1.05);
-}
-
-#Intro article {
-    flex: 1;
-    padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2rem) 0;
-    background: lightpink;
-    border-radius: 1rem;
-    animation: slideInFromRight 1s ease-out;
+    max-width: 80%;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    animation: fadeInUp 1s ease-out 0.5s both;
 }
 
 #Atelier {
@@ -415,17 +403,12 @@ footer img:hover {
     }
     
     #Intro {
-        flex-direction: column;
-        gap: 1rem;
-        min-height: auto;
+        min-height: 50vh;
     }
     
-    #Intro aside {
-        height: 250px;
-    }
-    
-    #Intro article {
-        padding: 2rem 1rem;
+    .intro-content {
+        max-width: 90%;
+        padding: 2rem 1.5rem;
     }
     
     .atelierContent {
@@ -502,8 +485,14 @@ footer img:hover {
         display: block;
     }
     
-    #Intro aside {
-        height: 200px;
+    #Intro {
+        min-height: 40vh;
+    }
+    
+    .intro-content {
+        max-width: 95%;
+        padding: 1.5rem 1rem;
+        font-size: 1rem;
     }
     
     .atelierContent aside {
