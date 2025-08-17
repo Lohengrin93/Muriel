@@ -415,27 +415,26 @@ main {
 .floating-nav {
     position: fixed;
     top: -60px;
-    left: 0;
-    width: 100%;
+    right: 20px;
+    width: auto;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 107, 157, 0.15);
+    border: 1px solid rgba(255, 107, 157, 0.15);
+    border-radius: 25px;
     box-shadow: 0 2px 15px rgba(0,0,0,0.05);
     z-index: 999;
     transition: top 0.3s ease;
 }
 
 .floating-nav.visible {
-    top: 0;
+    top: 80px;
 }
 
 .floating-nav-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.6rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 0.6rem 1.5rem;
+    gap: 1.5rem;
 }
 
 .nav-brand {
@@ -1074,6 +1073,14 @@ footer img:hover {
     }
     
     /* Floating Nav Mobile */
+    .floating-nav {
+        right: 15px;
+    }
+    
+    .floating-nav.visible {
+        top: 70px;
+    }
+    
     .floating-nav-content {
         padding: 0.5rem 1rem;
         flex-direction: column;
@@ -1081,18 +1088,18 @@ footer img:hover {
     }
     
     .nav-brand {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .floating-nav-menu {
-        gap: 0.8rem;
+        gap: 0.6rem;
         flex-wrap: wrap;
         justify-content: center;
     }
     
     .floating-nav-menu li a {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
     }
 }
 
