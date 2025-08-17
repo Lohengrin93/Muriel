@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Video control for slow playback and reverse effect
+    const headerVideo = document.querySelector('.header-video');
+    if (headerVideo) {
+        headerVideo.playbackRate = 0.5; // Make video play at half speed
+        
+        let isReversed = false;
+        setInterval(() => {
+            if (isReversed) {
+                headerVideo.playbackRate = 0.5; // Forward at half speed
+                headerVideo.style.transform = 'translate(-50%, -50%) scaleX(1)';
+            } else {
+                headerVideo.playbackRate = -0.5; // Reverse at half speed (if supported)
+                headerVideo.style.transform = 'translate(-50%, -50%) scaleX(-1)';
+            }
+            isReversed = !isReversed;
+        }, 10000); // Switch every 10 seconds
+    }
+
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
