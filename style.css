@@ -1,26 +1,26 @@
 @font-face {
     font-family: 'Now Regular';
-    src: url('/Fonts/Now-Regular.otf');
+    src: url('./Fonts/Now-Regular.otf');
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src: url('/Fonts/Montserrat-Regular.ttf');
+    src: url('./Fonts/Montserrat-Regular.ttf');
 }
 
 @font-face {
     font-family: 'Higuen';
-    src: url('/Fonts/Higuen_Serif.otf');
+    src: url('./Fonts/Higuen_Serif.otf');
 }
 
 @font-face {
     font-family: 'Lato';
-    src: url(/Fonts/Lato-Regular.ttf);
+    src: url('./Fonts/Lato-Regular.ttf');
 }
 
 @font-face {
     font-family: 'Brittany';
-    src: url(/Fonts/BrittanySignature.ttf);
+    src: url('./Fonts/BrittanySignature.ttf');
 }
 
 * {
@@ -308,7 +308,7 @@ main {
 }
 
 .headingTarifs {
-    background-image: url(/IMGS/img5b.jpg);
+    background-image: url('./IMGS/img5b.jpg');
     background-size: contain; 
     background-position: center; 
     background-repeat: no-repeat; 
