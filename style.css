@@ -830,6 +830,53 @@ footer img:hover {
     .contact-info {
         padding: 1.5rem;
     }
+    
+    /* Shopping Cart Mobile Styles */
+    .cart-container {
+        padding: 1.5rem 1rem;
+        max-width: 95%;
+        margin-bottom: 2rem;
+    }
+    
+    .cart-container h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .cart-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1rem 0.8rem;
+        text-align: center;
+    }
+    
+    .cart-item .item-name {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .cart-item .item-duration,
+    .cart-item .item-price {
+        font-size: 0.9rem;
+    }
+    
+    .cart-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .clear-btn, .proceed-btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+    
+    .book-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+        width: 100%;
+    }
 }
 
 .animate-in {
@@ -844,5 +891,180 @@ table tr {
 table tr:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: scale(1.02);
+}
+
+/* Shopping Cart Styles */
+.cart-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255, 107, 157, 0.2);
+}
+
+.cart-container h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2c2c2c;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cart-items {
+    min-height: 60px;
+    margin-bottom: 1.5rem;
+}
+
+.empty-cart {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+    margin: 0;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 107, 157, 0.1);
+}
+
+.cart-item:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.item-name {
+    font-weight: 600;
+    color: #2c2c2c;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.item-duration {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #ff6b9d;
+    font-size: 1.1rem;
+}
+
+.remove-item {
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.remove-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 10px rgba(255, 107, 157, 0.4);
+}
+
+.cart-total {
+    text-align: right;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(255, 107, 157, 0.1);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 107, 157, 0.2);
+}
+
+.cart-total strong {
+    font-family: 'Montserrat', sans-serif;
+    color: #2c2c2c;
+    font-size: 1.3rem;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.clear-btn, .proceed-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 150px;
+}
+
+.clear-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+.clear-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(231, 76, 60, 0.4);
+}
+
+.proceed-btn {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+}
+
+.proceed-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(39, 174, 96, 0.4);
+}
+
+.book-btn {
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+}
+
+.book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+}
+
+.book-btn:active {
+    transform: translateY(0);
 }
 

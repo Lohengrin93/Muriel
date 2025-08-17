@@ -66,6 +66,22 @@
                 <div class="headingTarifs">
                     <h2>TARIFS</h2>
                 </div>
+                
+                <!-- Shopping Cart -->
+                <div id="shopping-cart" class="cart-container">
+                    <h3>🛒 Votre panier (<span id="cart-count">0</span>)</h3>
+                    <div id="cart-items" class="cart-items">
+                        <p class="empty-cart">Votre panier est vide</p>
+                    </div>
+                    <div class="cart-total">
+                        <strong>Total: <span id="cart-total">0€</span></strong>
+                    </div>
+                    <div class="cart-actions">
+                        <button id="clear-cart" class="clear-btn">Vider le panier</button>
+                        <button id="proceed-booking" class="proceed-btn">Finaliser la réservation</button>
+                    </div>
+                </div>
+                
                 <div class="tarifliste">
                     <h4>ART THÉRAPIE</h4>
                      <table>
@@ -73,21 +89,25 @@
                             <th>Type de session</th>
                             <th>Durée</th>
                             <th>Prix</th>
+                            <th>Réservation</th>
                         </tr>
                         <tr>
                             <td>Solo</td>
                             <td>1 heure 30</td>
                             <td>50€</td>
+                            <td><button class="book-btn" data-service="Art-thérapie Solo" data-duration="1h30" data-price="50">Réserver</button></td>
                         </tr>
                         <tr>
                             <td>Duo</td>
                             <td>1 heure 45</td>
                             <td>90€</td>
+                            <td><button class="book-btn" data-service="Art-thérapie Duo" data-duration="1h45" data-price="90">Réserver</button></td>
                         </tr>
                         <tr>
                             <td>Groupe 3-5 pers</td>
                             <td>2 heures</td>
                             <td>40€/pers</td>
+                            <td><button class="book-btn" data-service="Art-thérapie Groupe" data-duration="2h" data-price="40">Réserver</button></td>
                         </tr>
                     </table>
                     <h5>Forfaits séances individuelles</h5>
@@ -96,16 +116,19 @@
                             <th>Forfait</th>
                             <th>Durée</th>
                             <th>Prix</th>
+                            <th>Réservation</th>
                         </tr>
                         <tr>
                             <td>3 séances</td>
                             <td>1 heure 30</td>
                             <td>140€</td>
+                            <td><button class="book-btn" data-service="Forfait 3 séances" data-duration="1h30 x3" data-price="140">Réserver</button></td>
                         </tr>
                         <tr>
                             <td>6 séances</td>
                             <td>1 heure 30</td>
                             <td>270€</td>
+                            <td><button class="book-btn" data-service="Forfait 6 séances" data-duration="1h30 x6" data-price="270">Réserver</button></td>
                         </tr>
                     </table>
                     <h4>ATELIER PEINTURE</h4>
@@ -114,26 +137,31 @@
                             <th>Type de session</th>
                             <th>Durée</th>
                             <th>Prix</th>
+                            <th>Réservation</th>
                         </tr>
                         <tr>
                             <td>Solo</td>
                             <td>2 heures</td>
                             <td>60€</td>
+                            <td><button class="book-btn" data-service="Peinture Solo 2h" data-duration="2h" data-price="60">Réserver</button></td>
                         </tr>
                         <tr>
                             <td>Solo</td>
                             <td>2 heures 30</td>
                             <td>65€</td>
+                            <td><button class="book-btn" data-service="Peinture Solo 2h30" data-duration="2h30" data-price="65">Réserver</button></td>
                         </tr>
                         <tr>
                             <td>Groupe 2/+</td>
                             <td>2 heures</td>
                             <td>55€</td>
+                            <td><button class="book-btn" data-service="Peinture Groupe 2h" data-duration="2h" data-price="55">Réserver</button></td>
                         </tr>
                         <tr>
                             <td>Groupe 2/+</td>
                             <td>2 heures 30</td>
                             <td>60€</td>
+                            <td><button class="book-btn" data-service="Peinture Groupe 2h30" data-duration="2h30" data-price="60">Réserver</button></td>
                         </tr>
                     </table>
                     <h5>Formules 4 x/ Mois</h5>
@@ -142,16 +170,19 @@
                             <th>Type de session</th>
                             <th>Durée</th>
                             <th>Prix</th>
+                            <th>Réservation</th>
                         </tr>
                         <tr>
                             <td>Solo</td>
                             <td>2 heures</td>
                             <td>220€</td>
+                            <td><button class="book-btn" data-service="Formule Solo 4x/mois" data-duration="2h x4" data-price="220">Réserver</button></td>
                         </tr>
                         <tr>
                             <td>Groupe 2-5 pers</td>
                             <td>2 heures</td>
                             <td>210€/pers</td>
+                            <td><button class="book-btn" data-service="Formule Groupe 4x/mois" data-duration="2h x4" data-price="210">Réserver</button></td>
                         </tr>
                     </table>
                 </div>
@@ -177,17 +208,28 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="service">Type de service</label>
-                            <select id="service" name="service" required>
-                                <option value="">Choisissez un service</option>
-                                <option value="art-therapie-solo">Art-thérapie - Session individuelle</option>
-                                <option value="art-therapie-duo">Art-thérapie - Session duo</option>
-                                <option value="art-therapie-groupe">Art-thérapie - Groupe</option>
-                                <option value="peinture-solo">Atelier peinture - Session individuelle</option>
-                                <option value="peinture-groupe">Atelier peinture - Groupe</option>
-                                <option value="forfait">Forfait de plusieurs séances</option>
-                                <option value="autre">Autre demande</option>
+                            <label for="preferred-date">Date préférée</label>
+                            <input type="date" id="preferred-date" name="preferred-date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preferred-time">Heure préférée</label>
+                            <select id="preferred-time" name="preferred-time">
+                                <option value="">Choisissez un créneau</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
                             </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cart-summary">Séances sélectionnées</label>
+                            <textarea id="cart-summary" name="cart-summary" rows="4" readonly placeholder="Vos séances apparaîtront ici automatiquement"></textarea>
                         </div>
                         
                         <div class="form-group">
