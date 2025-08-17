@@ -269,13 +269,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Floating navigation functionality
     function handleFloatingNav() {
         const floatingNav = document.getElementById('floating-nav');
-        const header = document.querySelector('header');
+        const intro = document.getElementById('Intro');
         
-        if (floatingNav && header) {
-            const headerHeight = header.offsetHeight;
+        if (floatingNav && intro) {
             const scrollY = window.scrollY;
+            const introPosition = intro.offsetTop;
             
-            if (scrollY > headerHeight - 100) {
+            // N'apparaît que quand on arrive à la section Intro
+            if (scrollY > introPosition - 200) {
                 floatingNav.classList.add('visible');
             } else {
                 floatingNav.classList.remove('visible');
@@ -292,7 +293,14 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId.startsWith('#')) {
+            
+            if (targetId === '#Home') {
+                // Ramener vers le haut du site
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else if (targetId.startsWith('#')) {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({
