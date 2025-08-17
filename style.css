@@ -191,7 +191,7 @@ main {
 #Intro {
     margin-top: 2rem;
     background-image: url('./img1.jpg');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 1rem;
@@ -200,6 +200,7 @@ main {
     justify-content: center;
     position: relative;
     min-height: 80vh;
+    width: 100%;
     animation: fadeInUp 1s ease-out;
 }
 
