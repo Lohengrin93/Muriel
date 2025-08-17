@@ -572,6 +572,17 @@ th {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+.payment-method-note .payment-note {
+    display: block;
+    margin-top: 0.5rem;
+    color: #856404;
+    font-size: 0.85rem;
+    background-color: rgba(255, 193, 7, 0.1);
+    padding: 0.5rem;
+    border-radius: 8px;
+    border-left: 3px solid #ffc107;
+}
+
 footer {
     background-color: rgba(44, 44, 44, 0.95);
     backdrop-filter: blur(10px);

@@ -93,7 +93,7 @@
                         <button id="pay-now" class="pay-btn">💳 Payer maintenant</button>
                     </div>
                     <div class="cancellation-policy">
-                        <small>*Annulation moins de 48h à l'avance : 20% du montant reste dû, le solde est reportable sur une prochaine séance (voir <a href="#cgu" class="cgu-link">CGU</a>)</small>
+                        <small>*Annulation moins de 48h à l'avance : 20% du montant reste dû (virement bancaire si paiement espèces), le solde est reportable sur une prochaine séance (voir <a href="#cgu" class="cgu-link">CGU</a>)</small>
                     </div>
                 </div>
                 
@@ -247,6 +247,16 @@
                             <textarea id="cart-summary" name="cart-summary" rows="4" readonly placeholder="Vos séances apparaîtront ici automatiquement"></textarea>
                         </div>
                         
+                        <div class="form-group payment-method-note">
+                            <label for="payment-method">Mode de paiement choisi</label>
+                            <select id="payment-method" name="payment-method">
+                                <option value="">Sélectionnez votre mode de paiement</option>
+                                <option value="stripe">Paiement en ligne (effectué)</option>
+                                <option value="cash">Paiement espèces sur place</option>
+                            </select>
+                            <small class="payment-note">Si paiement espèces : en cas d'annulation tardive, les frais seront demandés par virement bancaire</small>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="message">Message</label>
                             <textarea id="message" name="message" rows="5" placeholder="Décrivez votre demande, vos disponibilités ou toute question que vous pourriez avoir..." required></textarea>
@@ -279,6 +289,11 @@
                     <p><strong>Annulation 48h ou plus à l'avance :</strong> Remboursement intégral ou report gratuit de la séance.</p>
                     <p><strong>Annulation moins de 48h à l'avance :</strong> 20% du montant de la séance reste dû en frais d'annulation. Le solde (80%) peut être utilisé pour une prochaine séance dans un délai de 6 mois.</p>
                     <p><strong>Absence sans préavis :</strong> La totalité du montant reste due.</p>
+                    
+                    <h4>Paiement espèces et annulations</h4>
+                    <p><strong>Réservation avec paiement espèces :</strong> Pour les annulations de moins de 48h, les frais d'annulation (20% du montant) sont dus et doivent être réglés par virement bancaire dans les 7 jours suivant l'annulation.</p>
+                    <p><strong>Défaut de paiement :</strong> Le non-paiement des frais d'annulation entraîne l'interdiction de futures réservations jusqu'à régularisation.</p>
+                    <p><strong>Crédit disponible :</strong> Le solde (80%) reste disponible sous forme de crédit pour une future séance pendant 6 mois.</p>
                     
                     <h4>Modalités de paiement</h4>
                     <p><strong>Paiement en ligne via Stripe :</strong> Paiement sécurisé par carte bancaire. Remboursements traités selon la politique d'annulation ci-dessus.</p>
