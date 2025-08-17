@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/IMGS/MQ2.png">
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -65,11 +66,20 @@
             <div id="Tarifs">
                 <div class="headingTarifs">
                     <h2>TARIFS</h2>
+                    <!-- Cart Toggle Button -->
+                    <div class="cart-toggle-container">
+                        <button id="cart-toggle" class="cart-toggle-btn">
+                            🛒 Panier (<span id="cart-count">0</span>)
+                        </button>
+                    </div>
                 </div>
                 
-                <!-- Shopping Cart -->
-                <div id="shopping-cart" class="cart-container">
-                    <h3>🛒 Votre panier (<span id="cart-count">0</span>)</h3>
+                <!-- Shopping Cart (Hidden by default) -->
+                <div id="shopping-cart" class="cart-container" style="display: none;">
+                    <div class="cart-header">
+                        <h3>🛒 Votre panier (<span id="cart-count-header">0</span>)</h3>
+                        <button id="cart-close" class="cart-close-btn">×</button>
+                    </div>
                     <div id="cart-items" class="cart-items">
                         <p class="empty-cart">Votre panier est vide</p>
                     </div>
@@ -78,7 +88,8 @@
                     </div>
                     <div class="cart-actions">
                         <button id="clear-cart" class="clear-btn">Vider le panier</button>
-                        <button id="proceed-booking" class="proceed-btn">Finaliser la réservation</button>
+                        <button id="proceed-booking" class="proceed-btn">Réserver sans payer</button>
+                        <button id="pay-now" class="pay-btn">💳 Payer maintenant</button>
                     </div>
                 </div>
                 
