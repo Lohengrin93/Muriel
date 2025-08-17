@@ -66,6 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function showCart() {
         const cartContainer = document.getElementById('shopping-cart');
         cartContainer.style.display = 'block';
+        
+        // Scroll to Tarifs section where cart is located
+        const tarifsSection = document.getElementById('Tarifs');
+        if (tarifsSection) {
+            tarifsSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
     }
     
     function hideCart() {
