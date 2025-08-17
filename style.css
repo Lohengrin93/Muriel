@@ -1,0 +1,538 @@
+@font-face {
+    font-family: 'Now Regular';
+    src: url('/Fonts/Now-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/Fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Higuen';
+    src: url('/Fonts/Higuen_Serif.otf');
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url(/Fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Brittany';
+    src: url(/Fonts/BrittanySignature.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+
+html {
+    background-color: #d1e6ef;
+}
+
+body {
+    /* background: linear-gradient(to bottom, #FAFAFA, #C8DDD0, #C0D5DF, #B9BABA, #1E4147);  */
+    background-size: cover; 
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: Now Regular, sans-serif;
+    text-align: center;
+}
+
+.container {
+    max-width: 1300px;
+    width: 100%;
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+header {
+    width: 100%;
+    padding: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: Noto;
+}
+
+h1 {
+    color: #fd2e03;
+    font-family: Montserrat;
+    font-size: clamp(3rem, 8vw, 7rem);
+    margin-top: 0.5rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+h2 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: #fd2e03;
+}
+
+h4 {
+    color: #fd2e03;
+    font-family: Higuen;
+    font-size: 1.6rem;
+}
+
+h5 {
+    color: white;
+    font-family: Higuen;
+    font-size: 1.5rem;
+}
+
+h4, h5 {
+    letter-spacing: 3px;
+}
+
+h6 {
+    color: darkblue;
+    text-align: right;
+    font-size: 1.6rem;
+    margin: 0;
+    font-family: Brittany;
+    letter-spacing: 3px;
+    margin-top: -4.5rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+nav {
+    width: min(90%, 800px);
+    background-color: #214349;
+    border-radius: 30px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    animation: fadeInUp 1s ease-out 1s both;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding-left: 0;
+   }
+
+li a{
+    text-decoration: none;
+    color: white; 
+    font-family: 'Montserrat';
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+}
+
+li a:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+main {
+    min-height: 40rem;
+
+}
+
+#Intro {
+    min-height: 60vh;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    color: darkblue;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    border-radius: 1rem;
+    padding: 2rem 0;
+    gap: 2rem;
+}
+
+#Intro aside {
+    flex: 1;
+    display: flex; 
+    align-items: stretch;
+    animation: slideInFromLeft 1s ease-out;
+}
+
+#Intro aside img {
+    height: 100%;
+    width: 100%; 
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+
+#Intro aside img:hover {
+    transform: scale(1.05);
+}
+
+#Intro article {
+    flex: 1;
+    padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2rem) 0;
+    background: lightpink;
+    border-radius: 1rem;
+    animation: slideInFromRight 1s ease-out;
+}
+
+#Atelier {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.atelierContent {
+    display: flex;
+    flex-direction: row;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    gap: 2rem;
+}
+
+.atelierContent article {
+    flex: 1;
+    padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2rem) 0;
+    background: #416336;
+    border-radius: 1rem;
+}
+
+.atelierContent aside {
+    flex: 1;
+    display: flex; 
+    align-items: stretch;
+}
+
+.atelierContent aside img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.atelierContent aside img:hover {
+    transform: scale(1.05);
+}
+
+#Words {
+    max-width: 100%; 
+    margin: 0 auto; 
+}
+
+.wordsImg {
+    max-width: 100%; 
+    margin: 0 auto; 
+}
+
+.wordsImg img {
+    max-width: 50%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+    border-radius: 1rem;
+}
+
+
+#Tarifs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* #Tarifs h2 {
+    background-color: rgba(255, 255, 255, 0.467);
+    padding: 2rem;
+    border-radius: .6rem;
+    color: #fd2e03;
+    font-family: Rubik Vinyl;
+} */
+
+#Tarifs h2 {
+    background-color: #fd2d03a3;
+    padding: 2rem;
+    border-radius: .6rem;
+    color: white;
+    font-family: Montserrat;
+}
+
+.headingTarifs {
+    background-image: url(/IMGS/img5b.jpg);
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 50vh;  
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem; 
+    overflow: hidden; 
+}
+
+.tarifliste {
+    max-width: 600px;
+    margin: -9rem auto 5rem auto;
+    padding: 20px;
+    background-color: #457d929d;
+    border-radius: 1rem;
+    width: min(90%, 600px);
+}
+
+.tarifliste h4:first-of-type {
+    margin-top: 7rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Lato;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+} 
+
+#Contact {
+    min-height: 35rem;
+    color: #fd2e03;
+    font-family: Montserrat;
+    margin-bottom: 5rem;
+}
+
+footer{
+    background-color: #1E4147;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    font-size: 1rem;
+    padding: 0 2rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+footer img{
+    max-width: 3rem;
+    transition: transform 0.3s ease;
+}
+
+footer img:hover {
+    transform: scale(1.1);
+}
+
+.footerLeft a{
+    padding: 0.5rem;
+}
+
+.footerRight a{
+    color: white;
+    text-decoration: none;
+}
+
+.footerRight a:hover{
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h6 {
+        font-size: 1.2rem;
+        margin-top: -3rem;
+        text-align: center;
+    }
+    
+    nav {
+        width: 95%;
+        padding: 0.5rem;
+    }
+    
+    ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+    
+    li a {
+        font-size: 0.9rem;
+    }
+    
+    #Intro {
+        flex-direction: column;
+        gap: 1rem;
+        min-height: auto;
+    }
+    
+    #Intro aside {
+        height: 250px;
+    }
+    
+    #Intro article {
+        padding: 2rem 1rem;
+    }
+    
+    .atelierContent {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .atelierContent aside {
+        height: 250px;
+    }
+    
+    .atelierContent article {
+        padding: 2rem 1rem;
+    }
+    
+    .wordsImg img {
+        max-width: 80%;
+    }
+    
+    .headingTarifs {
+        height: 30vh;
+    }
+    
+    .tarifliste {
+        width: 95%;
+        margin: -5rem auto 3rem auto;
+    }
+    
+    #Contact iframe {
+        width: 100% !important;
+        height: 400px !important;
+    }
+    
+    footer {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    
+    footer img {
+        max-width: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: clamp(2rem, 10vw, 4rem);
+    }
+    
+    h2 {
+        font-size: clamp(1.5rem, 8vw, 3rem);
+    }
+    
+    nav {
+        border-radius: 15px;
+    }
+    
+    ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    li a {
+        font-size: 1rem;
+        padding: 0.5rem;
+        display: block;
+    }
+    
+    #Intro aside {
+        height: 200px;
+    }
+    
+    .atelierContent aside {
+        height: 200px;
+    }
+    
+    .wordsImg img {
+        max-width: 95%;
+    }
+    
+    .tarifliste {
+        margin: -3rem auto 2rem auto;
+        padding: 15px;
+    }
+    
+    table {
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        padding: 8px;
+    }
+}
+
+.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+table tr {
+    transition: all 0.3s ease;
+}
+
+table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
