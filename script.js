@@ -40,19 +40,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="cart-item">
                     <span class="item-name">${item.service}</span>
                     <span class="item-duration">${item.duration}</span>
-                    <span class="item-price">${item.price}€</span>
+                    <span class="item-price">${parseInt(item.price) === 0 ? 'Sur devis' : item.price + '€'}</span>
                     <button class="remove-item" data-index="${index}">×</button>
                 </div>
             `).join('');
             
             const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
-            cartTotal.textContent = total + '€';
+            const hasQuoteItems = cart.some(item => parseInt(item.price) === 0);
+            
+            if (hasQuoteItems && total > 0) {
+                cartTotal.textContent = total + '€ + devis';
+            } else if (hasQuoteItems && total === 0) {
+                cartTotal.textContent = 'Sur devis';
+            } else {
+                cartTotal.textContent = total + '€';
+            }
+            
             cartCount.textContent = cart.length;
             if (cartCountHeader) cartCountHeader.textContent = cart.length;
             
             if (cartSummary) {
-                const summary = cart.map(item => `${item.service} (${item.duration}) - ${item.price}€`).join('\\n');
-                cartSummary.value = summary + '\\n\\nTotal: ' + total + '€';
+                const summary = cart.map(item => `${item.service} (${item.duration}) - ${parseInt(item.price) === 0 ? 'Sur devis' : item.price + '€'}`).join('\\n');
+                if (hasQuoteItems && total > 0) {
+                    cartSummary.value = summary + '\\n\\nTotal: ' + total + '€ + prestations sur devis';
+                } else if (hasQuoteItems && total === 0) {
+                    cartSummary.value = summary + '\\n\\nTotal: Sur devis uniquement';
+                } else {
+                    cartSummary.value = summary + '\\n\\nTotal: ' + total + '€';
+                }
             }
             
             // Show cart button when items are added
@@ -89,8 +104,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show confirmation
         const button = event.target;
         const originalText = button.textContent;
-        button.textContent = 'Ajouté!';
-        button.style.backgroundColor = '#28a745';
+        
+        if (parseInt(price) === 0) {
+            button.textContent = 'Demande ajoutée!';
+            button.style.backgroundColor = '#17a2b8';
+        } else {
+            button.textContent = 'Ajouté!';
+            button.style.backgroundColor = '#28a745';
+        }
+        
         setTimeout(() => {
             button.textContent = originalText;
             button.style.backgroundColor = '';
@@ -161,9 +183,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Check for quote items
+        const hasQuoteItems = cart.some(item => parseInt(item.price) === 0);
+        if (hasQuoteItems) {
+            alert('Votre panier contient des prestations sur devis qui ne peuvent pas être payées en ligne. Veuillez utiliser "Réserver - Paiement espèces" pour soumettre votre demande.');
+            return;
+        }
+        
         // Check if Stripe is initialized
         if (!stripe) {
-            alert('Paiement temporairement indisponible. Veuillez utiliser "Réserver sans payer" pour le moment.');
+            alert('Paiement temporairement indisponible. Veuillez utiliser "Réserver - Paiement espèces" pour le moment.');
             return;
         }
         
