@@ -236,14 +236,15 @@ main {
     border-radius: 2px;
 }
 
-.intro-subtitle {
+.intro-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
     font-weight: 400;
     color: #666;
-    margin: 0;
-    letter-spacing: 1px;
-    line-height: 1.6;
+    margin: 1.5rem 0;
+    letter-spacing: 0.5px;
+    line-height: 1.7;
+    text-align: left;
 }
 
 #Atelier {
