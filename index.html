@@ -11,6 +11,17 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Image Lightbox -->
+    <div id="image-lightbox" class="lightbox-overlay" style="display: none;">
+        <div class="lightbox-container">
+            <div class="lightbox-image-wrapper">
+                <img id="lightbox-image" src="" alt="" class="lightbox-img">
+                <div id="lightbox-blur" class="lightbox-face-blur"></div>
+            </div>
+            <button id="lightbox-close" class="lightbox-close">&times;</button>
+        </div>
+    </div>
+
     <!-- Floating Cart Toggle Button (Hidden initially) -->
     <div class="cart-toggle-container" style="display: none;">
         <button id="cart-toggle" class="cart-toggle-btn">
@@ -23,7 +34,10 @@
         <ul class="floating-nav-menu">
             <li><a href="#Home">Home</a></li>
             <li><a href="#Intro">Intro</a></li>
+            <li><a href="#Video10">Video 10</a></li>
+            <li><a href="#VideosDiagonal">Vidéos</a></li>
             <li><a href="#Atelier">Atelier</a></li>
+            <li><a href="#Galerie">Galerie</a></li>
             <li><a href="#Tarifs">Tarifs</a></li>
             <li><a href="#Contact">Contact</a></li>
         </ul>
@@ -42,7 +56,10 @@
             <nav>
                 <ul>
                     <li><a href="#Intro">Intro</a></li>
+                    <li><a href="#Video10">Video 10</a></li>
+                    <li><a href="#VideosDiagonal">Vidéos</a></li>
                     <li><a href="#Atelier">L'atelier</a></li>
+                    <li><a href="#Galerie">Galerie</a></li>
                     <li><a href="#Tarifs">Tarifs</a></li>
                     <li><a href="#Contact">Contact</a></li>
                 </ul>
@@ -50,10 +67,15 @@
         </header>
         <main>
             <div id="Intro">
-                <video class="intro-video" autoplay muted loop playsinline id="intro-video">
-                    <source src="./backgr_img/video4.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <!-- Video Background Effect for this section -->
+                <div id="intro-video-overlay" class="intro-video-overlay">
+                    <video class="intro-background-video" autoplay muted loop playsinline>
+                        <source src="./backgr_img/video9.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                
                 <div class="intro-content">
                     <h2 class="intro-title">Le language de l'Art</h2>
                     <div class="intro-line"></div>
@@ -61,26 +83,119 @@
                     <p class="intro-text">À travers la peinture, le dessin, le collage, le modelage et l'écriture, chacun, quel que soit son niveau, a la possibilité d'explorer son univers intérieur, de libérer ses émotions et de cultiver un bien-être durable.</p>
                 </div>
             </div>
+            <div id="Video10">
+                <div class="video10-container">
+                    <video class="video10-background" muted loop playsinline>
+                        <source src="./backgr_img/video11.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video10-text">
+                        <h2>DÉCOUVREZ L'ART-THÉRAPIE</h2>
+                    </div>
+                    <div class="video10-content">
+                        <h3>"Libérez votre créativité et guérissez votre esprit à travers l'art."</h3>
+                        <p>Explorez <b>l'art-thérapie</b> à travers des <span class="interactive-link color-1" data-target="art-therapie-solo">séances individuelles</span> et <span class="interactive-link color-2" data-target="art-therapie-groupe">en groupe</span>, conçues pour répondre à vos besoins spécifiques, qu'ils soient personnels, collectifs ou professionnels. Ces sessions vous offrent un espace sécurisé pour exprimer vos émotions et vos pensées par le biais de la création artistique. Que vous choisissiez une approche personnalisée ou que vous préfériez la dynamique d'un groupe, l'art-thérapie vous permet de découvrir le pouvoir transformateur de l'art dans un cadre bienveillant et propice au développement personnel.</p>
+                        <p>Découvrez la <b>peinture</b> à travers des <span class="interactive-link color-3" data-target="peinture-solo">séances individuelles</span> et <span class="interactive-link color-4" data-target="peinture-groupe">en groupe</span>, toutes deux conçues pour vous offrir un espace d'expression et de création adapté à vos besoins. 
+                        Que vous soyez débutant ou passionné, les <span class="interactive-link color-5" data-target="peinture-solo">sessions individuelles</span> vous permettent de développer votre technique et d'explorer de nouvelles idées de manière personnalisée. <span class="interactive-link color-6" data-target="peinture-groupe">En groupe</span>, vous pourrez partager votre expérience artistique, vous inspirer mutuellement, et vous immerger dans une dynamique collective stimulante. 
+                        Chaque séance, est une occasion unique de laisser votre créativité s'épanouir et de vous connecter à l'art pictural.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="VideosDiagonal">
+                <div class="diagonal-video-container">
+                    <video class="diagonal-video-left" muted loop playsinline>
+                        <source src="./backgr_img/video7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video class="diagonal-video-right" muted loop playsinline>
+                        <source src="./backgr_img/video6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- Mots négatifs sur la partie grise -->
+                    <div class="negative-words">
+                        <span class="word word-1">DEUIL</span>
+                        <span class="word word-2">COLÈRE</span>
+                        <span class="word word-3">STRESS</span>
+                        <span class="word word-4">DÉPRESSION</span>
+                        <span class="word word-5">BURN-OUT</span>
+                        <span class="word word-6">MAL ÊTRE</span>
+                        <span class="word word-7">SOLITUDE</span>
+                        <span class="word word-8">SOUFFRANCE</span>
+                        <span class="word word-9">ANGOISSE</span>
+                        <span class="word word-10">BLOCAGE</span>
+                        <span class="word word-11">ANXIÉTÉ</span>
+                        <span class="word word-12">TRAUMA</span>
+                        <span class="word word-13">SÉPARATION</span>
+                        <span class="word word-14">EXCLUSION</span>
+                    </div>
+                </div>
+            </div>
             <div id="Atelier">
                 <h2>L'ATELIER</h2>
-                <div class="atelierContent">
-                    <article>
-                        <h3>“Libérez votre créativité et guérissez votre esprit à travers l’art.”</h3>
-                        <p>Explorez <b>l'art-thérapie</b> à travers des séances individuelles et en groupe, conçues pour répondre à vos besoins spécifiques, qu'ils soient personnels, collectifs ou professionnels. Ces sessions vous offrent un espace sécurisé pour exprimer vos émotions et vos pensées par le biais de la création artistique. Que vous choisissiez une approche personnalisée ou que vous préfériez la dynamique d'un groupe, l'art-thérapie vous permet de découvrir le pouvoir transformateur de l'art dans un cadre bienveillant et propice au développement personnel.
-                        </p>
-                        <p>Découvrez la <b>peinture</b> à travers des séances individuelles et en groupe, toutes deux conçues pour vous offrir un espace d'expression et de création adapté à vos besoins. 
-                        Que vous soyez débutant ou passionné, les sessions individuelles vous permettent de développer votre technique et d'explorer de nouvelles idées de manière personnalisée. En groupe, vous pourrez partager votre expérience artistique, vous inspirer mutuellement, et vous immerger dans une dynamique collective stimulante. 
-                        Chaque séance, est une occasion unique de laisser votre créativité s'épanouir et de vous connecter à l'art pictural.
-                        </p>
-                    </article>
-                    <aside>
-                        <img src="IMGS/atelier1.jpg" alt="">
-                    </aside>
+                <div class="atelier-simple">
+                    <div class="atelier-image-solo">
+                        <img src="IMGS/atelier1.jpg" alt="Atelier d'art-thérapie">
+                    </div>
                 </div>   
             </div>
-            <div id="Words">
-                <div class="wordsImg">
-                    <img src="IMGS/Words.png" alt="">
+            <div id="Galerie">
+                <h2>GALERIE</h2>
+                <div class="intro-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-nav">
+                            <button class="gallery-arrow gallery-arrow-prev" onclick="changeSlide(-1)">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                                </svg>
+                            </button>
+                            <button class="gallery-arrow gallery-arrow-next" onclick="changeSlide(1)">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="gallery-carousel" id="gallery-carousel">
+                            <div class="carousel-stack">
+                                <div class="gallery-item carousel-image" data-index="0" style="z-index: 12;">
+                                    <img src="imgs2/MQ1.jpeg" alt="Atelier d'art-thérapie" class="gallery-image">
+                                    <div class="face-blur face-blur-1"></div>
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="1" style="z-index: 11;">
+                                    <img src="imgs2/MQ2.jpeg" alt="Séance de peinture" class="gallery-image">
+                                    <div class="face-blur face-blur-2"></div>
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="2" style="z-index: 10;">
+                                    <img src="imgs2/MQ3.jpeg" alt="Création artistique" class="gallery-image">
+                                    <div class="face-blur face-blur-3"></div>
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="3" style="z-index: 9;">
+                                    <img src="imgs2/mq4.jpeg" alt="Expression créative" class="gallery-image">
+                                    <div class="face-blur face-blur-4"></div>
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="4" style="z-index: 8;">
+                                    <img src="imgs2/mq5.jpeg" alt="Art thérapie en groupe" class="gallery-image">
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="5" style="z-index: 7;">
+                                    <img src="imgs2/mq8.jpeg" alt="Méditation artistique" class="gallery-image">
+                                    <div class="face-blur face-blur-8"></div>
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="6" style="z-index: 6;">
+                                    <img src="imgs2/mq10.jpeg" alt="Créativité partagée" class="gallery-image">
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="7" style="z-index: 5;">
+                                    <img src="imgs2/mq11.jpeg" alt="Inspiration artistique" class="gallery-image">
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="8" style="z-index: 4;">
+                                    <img src="imgs2/mq12.jpeg" alt="Développement créatif" class="gallery-image">
+                                    <div class="face-blur face-blur-12"></div>
+                                </div>
+                                <div class="gallery-item carousel-image" data-index="9" style="z-index: 3;">
+                                    <img src="imgs2/mq13.jpeg" alt="Expression libre" class="gallery-image">
+                                    <div class="face-blur face-blur-13"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="Tarifs">
@@ -119,7 +234,7 @@
                             <th>Prix</th>
                             <th>Réservation</th>
                         </tr>
-                        <tr>
+                        <tr id="art-therapie-solo-row">
                             <td>Solo</td>
                             <td>1 heure 30</td>
                             <td>50€</td>
@@ -131,7 +246,7 @@
                             <td>90€</td>
                             <td><button class="book-btn" data-service="Art-thérapie Duo" data-duration="1h45" data-price="90">Réserver</button></td>
                         </tr>
-                        <tr>
+                        <tr id="art-therapie-groupe-row">
                             <td>Groupe 3-5 pers</td>
                             <td>2 heures</td>
                             <td>40€/pers</td>
@@ -167,7 +282,7 @@
                             <th>Prix</th>
                             <th>Réservation</th>
                         </tr>
-                        <tr>
+                        <tr id="peinture-solo-row">
                             <td>Solo</td>
                             <td>2 heures</td>
                             <td>60€</td>
@@ -179,7 +294,7 @@
                             <td>65€</td>
                             <td><button class="book-btn" data-service="Peinture Solo 2h30" data-duration="2h30" data-price="65">Réserver</button></td>
                         </tr>
-                        <tr>
+                        <tr id="peinture-groupe-row">
                             <td>Groupe 2/+</td>
                             <td>2 heures</td>
                             <td>55€</td>
@@ -252,13 +367,13 @@
                             <th>Réservation</th>
                         </tr>
                         <tr>
-                            <td>Écoles, maisons de retraite, collèges/lycées</td>
+                            <td>Écoles, maisons de retraite, collèges/lycées, entreprises</td>
                             <td>Demi-journée</td>
                             <td>Sur devis</td>
                             <td><button class="book-btn" data-service="Prestation demi-journée" data-duration="Demi-journée" data-price="0">Demander un devis</button></td>
                         </tr>
                         <tr>
-                            <td>Écoles, maisons de retraite, collèges/lycées</td>
+                            <td>Écoles, maisons de retraite, collèges/lycées, entreprises</td>
                             <td>Journée complète</td>
                             <td>Sur devis</td>
                             <td><button class="book-btn" data-service="Prestation journée complète" data-duration="Journée complète" data-price="0">Demander un devis</button></td>

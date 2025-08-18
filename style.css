@@ -23,6 +23,484 @@
     src: url('./Fonts/BrittanySignature.ttf');
 }
 
+
+/* Video Reveal Effect for Intro Section */
+#Intro {
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+}
+
+.intro-background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.intro-content {
+    position: relative;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.intro-gallery {
+    position: relative;
+    z-index: 5;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* S'assurer que le carrousel est prêt avec la première image visible */
+.carousel-image:nth-child(1) {
+    opacity: 1 !important;
+}
+
+/* Lightbox Styles */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.lightbox-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease-out;
+}
+
+.lightbox-overlay.show .lightbox-img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-close:hover {
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Rendre les images du carrousel cliquables */
+.gallery-image {
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.gallery-image:hover {
+    filter: brightness(1.1);
+}
+
+/* Lightbox face blur styles */
+.lightbox-face-blur {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Face blur positions for lightbox - exactly matching miniatures */
+.lightbox-face-blur.face-blur-1 {
+    top: 30%;
+    left: 20%;
+    width: 25%;
+    height: 30%;
+    backdrop-filter: blur(15px);
+    opacity: 1;
+}
+
+.lightbox-face-blur.face-blur-2 {
+    top: 25%;
+    left: 20%;
+    width: 22%;
+    height: 28%;
+    backdrop-filter: blur(15px);
+    opacity: 1;
+}
+
+.lightbox-face-blur.face-blur-3 {
+    display: none; /* Enfant de dos, pas besoin de flou */
+}
+
+.lightbox-face-blur.face-blur-4 {
+    top: 20%;
+    left: 40%;
+    width: 28%;
+    height: 35%;
+    backdrop-filter: blur(15px);
+    opacity: 1;
+}
+
+.lightbox-face-blur.face-blur-5 {
+    top: 20%;
+    left: 25%;
+    width: 18%;
+    height: 24%;
+    backdrop-filter: blur(12px);
+    opacity: 1;
+}
+
+.lightbox-face-blur.face-blur-5::after {
+    content: '';
+    position: absolute;
+    top: 150%;
+    left: 45%;
+    width: 16%;
+    height: 22%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+}
+
+.lightbox-face-blur.face-blur-8 {
+    display: none; /* Adulte - pas de floutage nécessaire */
+}
+
+.lightbox-face-blur.face-blur-10 {
+    top: 15%;
+    left: 12%;
+    width: 14%;
+    height: 18%;
+    backdrop-filter: blur(15px);
+    opacity: 1;
+}
+
+.lightbox-face-blur.face-blur-10::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 180%;
+    width: 12%;
+    height: 16%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    border-radius: 50%;
+}
+
+.lightbox-face-blur.face-blur-10::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 350%;
+    width: 13%;
+    height: 17%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    border-radius: 50%;
+}
+
+.lightbox-face-blur.face-blur-11 {
+    top: 18%;
+    left: 25%;
+    width: 16%;
+    height: 20%;
+    backdrop-filter: blur(15px);
+    opacity: 1;
+}
+
+.lightbox-face-blur.face-blur-12 {
+    display: none; /* Pas de visage visible face à l'objectif */
+}
+
+.lightbox-face-blur.face-blur-13 {
+    display: none; /* Pas de visage visible face à l'objectif */
+}
+
+.intro-content.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro-gallery.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.video10-text.revealed {
+    opacity: 1;
+    animation: paintReveal 0.8s ease-out forwards;
+}
+
+.video10-content.revealed {
+    opacity: 1;
+}
+
+@keyframes paintReveal {
+    0% {
+        opacity: 0;
+        transform: translate(-200%, -50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+/* Animation States - Toutes les sections commencent invisibles */
+#Intro .intro-content,
+#VideosDiagonal,
+#Atelier,
+#Galerie,
+#Tarifs,
+#Contact {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* States révélées */
+#Intro .intro-content.revealed,
+#VideosDiagonal.revealed,
+#Atelier.revealed,
+#Galerie.revealed,
+#Tarifs.revealed,
+#Contact.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section Description Styles */
+#Description {
+    min-height: 100vh;
+    padding: 8rem 2rem;
+    background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 50%, #c5cae9 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.description-content {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.2s ease-out 0.5s forwards;
+}
+
+#Description h2 {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem 4rem;
+    border-radius: 50px;
+    margin-bottom: 4rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #2c3e50;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.description-text {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 4rem;
+    border-radius: 30px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.1);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    line-height: 1.8;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: slideInScale 1s ease-out 1s forwards;
+}
+
+.description-text h3 {
+    color: #34495e;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out 1.5s forwards;
+}
+
+.description-text p {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: justify;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.description-text p:first-of-type {
+    animation: fadeInUp 1s ease-out 2s forwards;
+}
+
+.description-text p:last-of-type {
+    animation: fadeInUp 1s ease-out 2.3s forwards;
+}
+
+/* Interactive Links Styles - Base */
+.interactive-link {
+    position: relative;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.interactive-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+.interactive-link:hover::before {
+    width: 100%;
+}
+
+.interactive-link:active {
+    transform: translateY(0);
+}
+
+/* Liens interactifs - Style simple avec ombre légère */
+.interactive-link {
+    color: inherit;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid transparent;
+}
+
+.interactive-link:hover {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.interactive-link:active {
+    transform: translateY(0);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animations */
+@keyframes fadeOutOverlay {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    50% {
+        opacity: 0.5;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.intro-video-overlay.fade-out {
+    animation: fadeOutOverlay 1.2s ease-out forwards;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -118,13 +596,13 @@ header::after {
     height: 25vh;
     background: linear-gradient(to bottom, 
         transparent 0%, 
-        rgba(255, 255, 255, 0.05) 20%,
-        rgba(255, 255, 255, 0.15) 40%,
-        rgba(255, 255, 255, 0.35) 60%,
-        rgba(255, 255, 255, 0.65) 80%,
-        rgba(255, 255, 255, 0.85) 90%,
-        rgba(255, 255, 255, 0.95) 95%,
-        rgba(255, 255, 255, 1) 100%
+        rgba(248, 249, 250, 0.05) 20%,
+        rgba(248, 249, 250, 0.15) 40%,
+        rgba(248, 249, 250, 0.35) 60%,
+        rgba(248, 249, 250, 0.65) 80%,
+        rgba(248, 249, 250, 0.85) 90%,
+        rgba(248, 249, 250, 0.95) 95%,
+        rgba(248, 249, 250, 1) 100%
     );
     z-index: 1;
     pointer-events: none;
@@ -242,11 +720,18 @@ main {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     padding: 4rem 2rem;
     transition: all 2s ease-in-out;
     overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(248, 249, 250, 0.95) 0%,
+        rgba(255, 255, 255, 0.9) 25%,
+        rgba(245, 246, 247, 0.95) 50%,
+        rgba(255, 255, 255, 0.9) 75%,
+        rgba(248, 249, 250, 0.95) 100%
+    );
 }
 
 /* Vidéo de fond pour la section Intro */
@@ -304,54 +789,18 @@ main {
 }
 
 .intro-content {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(255, 255, 255, 0.25) 25%,
-        rgba(255, 255, 255, 0.2) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        rgba(255, 255, 255, 0.1) 100%
-    );
-    backdrop-filter: blur(20px) saturate(1.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 40px;
+    width: 50%;
+    margin-right: 5%;
+    margin-left: auto;
     padding: 5rem 4rem;
     text-align: left;
     max-width: 1000px;
-    box-shadow: 
-        0 25px 80px rgba(0,0,0,0.15),
-        0 10px 40px rgba(0,0,0,0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.2);
     animation: fadeInUp 1s ease-out 0.5s both;
     position: relative;
-    overflow: hidden;
+    z-index: 10;
+    background: none;
 }
 
-/* Effet de brillance subtile */
-.intro-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.2), 
-        transparent
-    );
-    animation: shimmer 3s ease-in-out infinite;
-    animation-delay: 2s;
-}
-
-@keyframes shimmer {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
-}
 
 .intro-title {
     font-family: 'Montserrat', sans-serif;
@@ -418,6 +867,420 @@ main {
     line-height: 3rem;
     margin: 0.5rem 0.8rem 0 0;
     text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+}
+
+/* Galerie photo sur la droite */
+.intro-gallery {
+    position: absolute;
+    right: 5%;
+    top: 15%;
+    width: 35%;
+    height: 70%;
+    z-index: 1;
+}
+
+.gallery-container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(255, 255, 255, 0.04) 50%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 2rem;
+    overflow: hidden;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.03),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+    z-index: 10;
+}
+
+.gallery-carousel {
+    height: 100%;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, 
+        rgba(248, 249, 250, 0.02) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(248, 249, 250, 0.02) 100%
+    );
+}
+
+.carousel-stack {
+    position: relative;
+    width: 450px;
+    height: 550px;
+    perspective: 1500px;
+    transform-style: preserve-3d;
+}
+
+.carousel-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.3));
+}
+
+.carousel-image.transitioning {
+    transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Image principale - au premier plan */
+.carousel-image:nth-child(1) {
+    transform: translateX(0) translateY(0) translateZ(0) scale(1) rotateY(0deg);
+    opacity: 1;
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.4));
+}
+
+/* Images à droite avec rotation 3D */
+.carousel-image:nth-child(2) {
+    transform: translateX(80px) translateY(-15px) translateZ(-50px) scale(0.9) rotateY(-12deg);
+    opacity: 0.85;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+.carousel-image:nth-child(3) {
+    transform: translateX(140px) translateY(-25px) translateZ(-100px) scale(0.8) rotateY(-20deg);
+    opacity: 0.7;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+}
+
+.carousel-image:nth-child(4) {
+    transform: translateX(180px) translateY(-35px) translateZ(-150px) scale(0.7) rotateY(-25deg);
+    opacity: 0.55;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
+}
+
+.carousel-image:nth-child(5) {
+    transform: translateX(210px) translateY(-45px) translateZ(-200px) scale(0.6) rotateY(-30deg);
+    opacity: 0.4;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
+}
+
+/* Images à gauche avec rotation 3D opposée */
+.carousel-image:nth-child(6) {
+    transform: translateX(-80px) translateY(-15px) translateZ(-50px) scale(0.9) rotateY(12deg);
+    opacity: 0.85;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+.carousel-image:nth-child(7) {
+    transform: translateX(-140px) translateY(-25px) translateZ(-100px) scale(0.8) rotateY(20deg);
+    opacity: 0.7;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+}
+
+.carousel-image:nth-child(8) {
+    transform: translateX(-180px) translateY(-35px) translateZ(-150px) scale(0.7) rotateY(25deg);
+    opacity: 0.55;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
+}
+
+.carousel-image:nth-child(9) {
+    transform: translateX(-210px) translateY(-45px) translateZ(-200px) scale(0.6) rotateY(30deg);
+    opacity: 0.4;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
+}
+
+/* Images très en arrière */
+.carousel-image:nth-child(n+10) {
+    transform: translateX(0) translateY(-60px) translateZ(-300px) scale(0.4) rotateY(0deg);
+    opacity: 0.2;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    z-index: 10;
+    border-radius: 25px;
+}
+
+/* Zones de floutage pour les visages d'enfants */
+.face-blur {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Positionnements spécifiques pour chaque image - seulement pour les visages visibles */
+.face-blur-1 {
+    top: 30%;
+    left: 20%;
+    width: 25%;
+    height: 30%;
+    backdrop-filter: blur(15px);
+    border-radius: 60%;
+}
+
+.face-blur-2 {
+    top: 25%;
+    left: 20%;
+    width: 22%;
+    height: 28%;
+    backdrop-filter: blur(15px);
+    border-radius: 60%;
+}
+
+.face-blur-3 {
+    display: none; /* Enfant de dos, pas besoin de flou */
+}
+
+.face-blur-4 {
+    top: 20%;
+    left: 40%;
+    width: 28%;
+    height: 35%;
+    backdrop-filter: blur(15px);
+    border-radius: 60%;
+}
+
+.face-blur-5 {
+    top: 20%;
+    left: 25%;
+    width: 18%;
+    height: 24%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+}
+
+/* Deuxième enfant dans mq5 */
+.face-blur-5::after {
+    content: '';
+    position: absolute;
+    top: 150%;
+    left: 45%;
+    width: 16%;
+    height: 20%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.face-blur-6 {
+    /* Enfant au premier plan à gauche */
+    top: 25%;
+    left: 8%;
+    width: 12%;
+    height: 16%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+}
+
+/* Autres enfants dans mq6 */
+.face-blur-6::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: 350%;
+    width: 10%;
+    height: 14%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.face-blur-6::after {
+    content: '';
+    position: absolute;
+    top: 180%;
+    left: 120%;
+    width: 11%;
+    height: 15%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.face-blur-7 {
+    /* Adolescent à gauche en premier plan */
+    top: 45%;
+    left: 8%;
+    width: 14%;
+    height: 18%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+}
+
+/* Autres adolescents dans mq7 */
+.face-blur-7::before {
+    content: '';
+    position: absolute;
+    top: -80%;
+    left: 220%;
+    width: 13%;
+    height: 17%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.face-blur-7::after {
+    content: '';
+    position: absolute;
+    top: -70%;
+    left: 400%;
+    width: 12%;
+    height: 16%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.face-blur-8 {
+    display: none; /* Adulte - pas de floutage nécessaire */
+}
+
+.face-blur-10 {
+    /* Jeune femme à gauche */
+    top: 15%;
+    left: 12%;
+    width: 14%;
+    height: 18%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+}
+
+/* Autres visages dans mq10 */
+.face-blur-10::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 180%;
+    width: 12%;
+    height: 16%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.face-blur-10::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 350%;
+    width: 13%;
+    height: 17%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.face-blur-11 {
+    /* Jeune femme en t-shirt noir */
+    top: 18%;
+    left: 25%;
+    width: 16%;
+    height: 20%;
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+}
+
+.face-blur-12 {
+    display: none; /* Pas de visage visible face à l'objectif */
+}
+
+.face-blur-13 {
+    display: none; /* Pas de visage visible face à l'objectif */
+}
+
+/* Navigation arrows */
+.gallery-nav {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 20;
+}
+
+.gallery-arrow {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 100%
+    );
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(15px);
+    color: rgba(0, 0, 0, 0.75);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    transform-style: preserve-3d;
+}
+
+.gallery-arrow:hover {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.9) 100%
+    );
+    color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.15) translateZ(10px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 8px 15px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.7);
+}
+
+.gallery-arrow svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.gallery-arrow:hover svg {
+    width: 24px;
+    height: 24px;
+}
+
+@keyframes naturalScroll {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 
@@ -501,15 +1364,52 @@ main {
 
 .atelierContent {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    max-width: 1200px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    max-width: 1400px;
     width: 100%;
     position: relative;
     z-index: 2;
     opacity: 0;
     transform: translateY(50px);
     animation: slideInContent 1.2s ease-out 1.2s forwards;
+    align-items: center;
+}
+
+.atelier-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.9) translateX(-30px);
+    animation: slideInImage 1s ease-out 2.8s forwards;
+}
+
+.atelier-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.atelier-image img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 30px 100px rgba(0,0,0,0.2);
+}
+
+.atelier-text {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 3.5rem;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.7;
+    opacity: 0;
+    transform: scale(0.9) translateX(30px);
+    animation: slideInWindow 1s ease-out 1.8s forwards;
 }
 
 /* Animation pour le contenu principal */
@@ -542,7 +1442,7 @@ main {
 }
 
 /* Animations modernes pour le texte */
-.atelierContent article h3 {
+.atelier-text h3 {
     opacity: 0;
     transform: translateY(20px) rotateX(15deg);
     filter: blur(5px);
@@ -551,14 +1451,14 @@ main {
     overflow: hidden;
 }
 
-.atelierContent article p:first-of-type {
+.atelier-text p:first-of-type {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
     filter: blur(3px);
     animation: modernTextIn 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 3.2s forwards;
 }
 
-.atelierContent article p:last-of-type {
+.atelier-text p:last-of-type {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
     filter: blur(3px);
@@ -585,7 +1485,7 @@ main {
 }
 
 /* Animation avec effet de brillance */
-.atelierContent article h3::after {
+.atelier-text h3::after {
     content: '';
     position: absolute;
     top: 0;
@@ -606,12 +1506,12 @@ main {
 }
 
 /* Animation de révélation progressive des mots */
-.atelierContent article p {
+.atelier-text p {
     overflow: hidden;
     position: relative;
 }
 
-.atelierContent article p::before {
+.atelier-text p::before {
     content: '';
     position: absolute;
     top: 0;
@@ -623,12 +1523,50 @@ main {
     animation: revealText 1.5s ease-in-out;
 }
 
-.atelierContent article p:first-of-type::before {
+.atelier-text p:first-of-type::before {
     animation-delay: 3.2s;
 }
 
-.atelierContent article p:last-of-type::before {
+.atelier-text p:last-of-type::before {
     animation-delay: 3.9s;
+}
+
+/* Atelier Section Simplified Styles */
+.atelier-simple {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideInContent 1.2s ease-out 1.2s forwards;
+}
+
+.atelier-image-solo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: slideInImage 1s ease-out 2s forwards;
+}
+
+.atelier-image-solo img {
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 30px 100px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.atelier-image-solo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 40px 120px rgba(0,0,0,0.25);
 }
 
 @keyframes revealText {
@@ -791,7 +1729,7 @@ main {
 
 .floating-nav:hover {
     opacity: 0.95;
-    width: 160px;
+    width: 140px;
     background: 
         radial-gradient(circle at 30% 20%, rgba(255, 182, 193, 0.25) 0%, transparent 40%),
         radial-gradient(circle at 70% 60%, rgba(255, 255, 153, 0.22) 0%, transparent 40%),
@@ -822,7 +1760,7 @@ main {
     display: flex;
     flex-direction: column;
     list-style: none;
-    gap: 4rem;
+    gap: 2.5rem;
     margin: 0;
     padding: 0;
     align-items: center;
@@ -889,6 +1827,55 @@ main {
         radial-gradient(circle at 50% 50%, rgba(255, 204, 204, 0.15) 0%, transparent 50%),
         linear-gradient(180deg, rgba(255, 182, 193, 0.12), rgba(255, 255, 153, 0.12));
     box-shadow: 0 0 30px rgba(255, 182, 193, 0.2);
+}
+
+/* Description section colors */
+.floating-nav.description-colors {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(159, 168, 218, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(197, 202, 233, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(179, 157, 219, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(225, 190, 231, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(232, 234, 246, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(159, 168, 218, 0.02), rgba(197, 202, 233, 0.02));
+}
+
+.floating-nav.description-colors:hover {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(159, 168, 218, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(197, 202, 233, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(179, 157, 219, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(225, 190, 231, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(232, 234, 246, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(159, 168, 218, 0.12), rgba(197, 202, 233, 0.12));
+    box-shadow: 0 0 30px rgba(159, 168, 218, 0.2);
+}
+
+/* Section Vidéos Diagonal - Gris orageux et bleus ciel */
+.floating-nav.videos-colors {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(105, 105, 105, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(135, 206, 250, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(169, 169, 169, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(176, 196, 222, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(192, 192, 192, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(105, 105, 105, 0.02), rgba(135, 206, 250, 0.02));
+}
+
+.floating-nav.videos-colors:hover {
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(105, 105, 105, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(135, 206, 250, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(169, 169, 169, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(176, 196, 222, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(192, 192, 192, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(105, 105, 105, 0.12), rgba(135, 206, 250, 0.12));
+    box-shadow: 0 0 30px rgba(105, 105, 105, 0.2);
+}
+
+.floating-nav.videos-colors .floating-nav-menu li a:hover {
+    color: #607D8B;
+    box-shadow: 0 5px 20px rgba(105, 105, 105, 0.4);
 }
 
 /* Section Atelier - Verts et bleus naturels */
@@ -1326,6 +2313,15 @@ footer img:hover {
         margin: 0.3rem 0.6rem 0 0;
     }
     
+    .intro-content {
+        width: 90%;
+        margin-left: 5%;
+    }
+    
+    .intro-gallery {
+        display: none;
+    }
+    
     #Atelier {
         padding: 4rem 1rem;
         min-height: 120vh;
@@ -1484,6 +2480,15 @@ footer img:hover {
         font-size: 2.5rem;
         line-height: 2rem;
         margin: 0.2rem 0.5rem 0 0;
+    }
+    
+    .intro-content {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+    
+    .intro-gallery {
+        display: none;
     }
     
     .intro-line {
@@ -2032,4 +3037,260 @@ table tr:hover {
     font-style: italic;
     color: #999;
 }
+
+/* Highlighted row effect for interactive links */
+.highlighted-row {
+    background: linear-gradient(135deg, #ff6b9d20, #c4b3f320) !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3) !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid #ff6b9d30 !important;
+}
+
+.highlighted-row td {
+    color: #2c2c2c !important;
+    font-weight: 600 !important;
+}
+
+/* Video10 Section */
+#Video10 {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.video10-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.video10-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.video10-text {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+}
+
+.video10-text h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 400;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.video10-content {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: left;
+    width: 90%;
+    max-width: 1000px;
+    opacity: 0;
+}
+
+.video10-content h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 300;
+    color: #2c3e50;
+    font-style: italic;
+    margin: 0 0 2rem 0;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.video10-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 300;
+    color: #2c2c2c;
+    line-height: 1.7;
+    margin: 1.5rem 0;
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadeInContent {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Section Galerie */
+#Galerie {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#Galerie h2 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: #2c3e50;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#Galerie .intro-gallery {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+    max-width: 600px;
+    height: 500px;
+    opacity: 1;
+    transform: none;
+    display: block !important;
+}
+
+#Galerie .gallery-container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.03) 25%,
+        rgba(255, 255, 255, 0.04) 50%,
+        rgba(255, 255, 255, 0.03) 75%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(2px) saturate(1.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+}
+
+/* Effet vidéo diagonal - Orage à gauche, Oiseau à droite */
+.diagonal-video-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+}
+
+.diagonal-video-left,
+.diagonal-video-right {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.diagonal-video-left {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    z-index: 1;
+    animation: expandToFullFrame 6s ease-out forwards;
+}
+
+.diagonal-video-right {
+    right: 0;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    z-index: 2;
+    object-position: 0% center;
+    transform: scale(1.43);
+    animation: fadeOut 8s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1.43);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.43);
+    }
+}
+
+@keyframes expandToFullFrame {
+    from {
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+/* Mots négatifs sur la partie grise */
+.negative-words {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    animation: fadeOut 8s ease-in-out forwards;
+}
+
+.word {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+/* Positionnement éclectique dans l'espace triangulaire */
+.word-1 { top: 65%; right: 52%; }
+.word-2 { top: 25%; right: 8%; }
+.word-3 { top: 75%; right: 42%; }
+.word-4 { top: 35%; right: 15%; }
+.word-5 { top: 42%; right: 25%; }
+.word-6 { top: 62%; right: 30%; }
+.word-7 { top: 55%; right: 20%; }
+.word-8 { top: 48%; right: 38%; }
+.word-9 { top: 65%; right: 42%; }
+.word-10 { top: 60%; right: 18%; }
+.word-11 { top: 75%; right: 22%; }
+.word-12 { top: 58%; right: 25%; }
+.word-13 { top: 82%; right: 25%; }
+.word-14 { top: 72%; right: 35%; }
 
